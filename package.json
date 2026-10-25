@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Student Mentorship Portal (Academic Nexus) \u2014 Supabase + React + Vercel",
   "engines": {
-    "node": ">=20.0.0"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "npm --prefix frontend run dev",
