@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Academic Nexus | Faculty Performance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-secondary": "#ffffff", "on-primary-fixed": "#380d00", "on-surface-variant": "#574239", "on-primary-fixed-variant": "#802a00", "tertiary-container": "#747575", "tertiary-fixed-dim": "#c7c6c6", "on-secondary-container": "#601c00", primary: "#a43700", "on-surface": "#1a1c1c", "surface-container": "#eeeeee", "surface-container-highest": "#e2e2e2", "on-primary-container": "#fffbff", "surface-container-lowest": "#ffffff", "on-primary": "#ffffff", "primary-container": "#cd4800", "on-background": "#1a1c1c", "error-container": "#ffdad6", "on-error-container": "#93000a", tertiary: "#5b5c5c", outline: "#8b7268", "secondary-fixed": "#ffdbcf", "on-error": "#ffffff", "primary-fixed": "#ffdbcf", error: "#ba1a1a", "surface-tint": "#a83900", "secondary-container": "#fd7039", surface: "#f9f9f9", "surface-container-low": "#f3f3f4", "on-secondary-fixed-variant": "#812800", "surface-variant": "#e2e2e2", "tertiary-fixed": "#e3e2e2", "primary-fixed-dim": "#ffb59a", "inverse-on-surface": "#f0f1f1", "secondary-fixed-dim": "#ffb59b", background: "#f9f9f9", "on-tertiary-container": "#fdfcfc", "on-tertiary": "#ffffff", "surface-bright": "#f9f9f9", "inverse-surface": "#2f3131", "on-tertiary-fixed": "#1a1c1c", "on-secondary-fixed": "#380d00", "surface-container-high": "#e8e8e8", secondary: "#a93700", "outline-variant": "#dfc0b5", "surface-dim": "#dadada", "inverse-primary": "#ffb59a", "on-tertiary-fixed-variant": "#464747"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {margin: "24px", xs: "8px", lg: "32px", sm: "16px", base: "4px", xl: "48px", gutter: "20px", md: "24px"}, fontFamily: {"headline-lg": ["Manrope"], "headline-md": ["Manrope"], "label-md": ["Hanken Grotesk"], "label-sm": ["Hanken Grotesk"], "body-lg": ["Hanken Grotesk"], "body-md": ["Hanken Grotesk"], headline: ["Manrope"], display: ["Manrope"], body: ["Hanken Grotesk"], label: ["Hanken Grotesk"]}, fontSize: {"headline-lg": ["32px", {lineHeight: "40px", fontWeight: "700"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "label-md": ["14px", {lineHeight: "20px", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}]}}}};</script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; -webkit-font-smoothing: antialiased; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(8px); }
+        .chart-bar { transition: height 1s ease-in-out; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface border-r border-outline-variant flex flex-col py-md z-50">
+<div class="px-md mb-xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">SSMP Faculty</h1>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Academic Support</p>
+</div>
+<nav class="flex-1 space-y-base px-sm">
+<a class="flex items-center gap-sm px-md py-sm transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-highest rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm transition-colors duration-200 text-on-surface-variant hover:bg-surface-container-highest rounded-lg" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-body-md">Ticket Queue</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm text-secondary font-bold border-r-4 border-secondary bg-secondary-container/10 rounded-l-lg" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-body-md">Performance</span>
+</a>
+</nav>
+<div class="px-md mt-auto pt-md border-t border-outline-variant flex items-center gap-sm">
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed shadow-sm object-cover" data-alt="A professional headshot of a faculty mentor in high-resolution, featuring a middle-aged academic professional with a warm smile. The background is a blurred university library with wooden bookshelves and soft ambient lighting. The style is professional and corporate, using a clean, light-mode aesthetic consistent with academic leadership portraits." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXWjXIkF_RmRBEGeT2Kamb50KpL1isXL69GQIIpc-CgPPdqDVV6LzL6EmTlWsZ6BNyJeFF7XheJrBHMWmTxL8s6KnaRi48QkAGrZLTkI4lq-2CN4O-WKU1BAt4veU4zsOZ_1j8B0El9zeDhdxTWMuTK-Cyxn2qcFgSfDPCml2tL57z9ymqsOt6FdyCFKl2E69-FQ3o4c4xNpsFyyRGt95M94GsyO_lQdDGAdjcwt9xABL1h2fxZDTHMQ"/>
+<div>
+<p class="text-label-md font-bold text-on-surface">Dr. Aris Thorne</p>
+<p class="text-label-sm text-on-surface-variant">Senior Mentor</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-lg z-40 transition-all duration-300">
+<div class="flex items-center gap-md w-1/2">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search analytics or tickets..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary">Academic Nexus</h2>
+<div class="flex items-center gap-sm">
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="pt-24 pb-12 px-lg max-w-7xl mx-auto space-y-lg">
+<!-- Page Title & Summary -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-2">Performance Insights</h3>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">Your resolution efficiency has improved by <span class="text-secondary font-bold">12%</span> this month. You are currently ranked in the top 5% of the Faculty Mentorship department.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-2 bg-primary text-white font-label-md rounded-lg hover:shadow-lg transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                        Export Report
+                    </button>
+</div>
+</div>
+<!-- Key Metric Cards: Bento Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Resolution Time -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-sm">
+<span class="p-2 bg-primary-fixed text-primary rounded-lg material-symbols-outlined">schedule</span>
+<span class="text-secondary text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span> 0.8h
+                        </span>
+</div>
+<div>
+<p class="text-headline-lg font-headline-lg text-primary">4.2h</p>
+<p class="text-label-md text-on-surface-variant">Average Resolution Time</p>
+</div>
+</div>
+<!-- Student Satisfaction -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-sm">
+<span class="p-2 bg-secondary-fixed text-secondary rounded-lg material-symbols-outlined">star</span>
+<span class="text-secondary text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> 4%
+                        </span>
+</div>
+<div>
+<p class="text-headline-lg font-headline-lg text-primary">4.9/5</p>
+<p class="text-label-md text-on-surface-variant">Student Satisfaction Score</p>
+</div>
+</div>
+<!-- Total Resolved -->
+<div class="bg-white border border-outline-variant rounded-xl p-md flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-sm">
+<span class="p-2 bg-tertiary-fixed text-tertiary rounded-lg material-symbols-outlined">task_alt</span>
+<span class="text-on-surface-variant text-label-sm font-medium">This Semester</span>
+</div>
+<div>
+<p class="text-headline-lg font-headline-lg text-primary">142</p>
+<p class="text-label-md text-on-surface-variant">Total Tickets Resolved</p>
+</div>
+</div>
+</div>
+<!-- Charts Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Resolution Trend -->
+<div class="lg:col-span-8 bg-white border border-outline-variant rounded-xl p-lg">
+<div class="flex justify-between items-center mb-lg">
+<h4 class="font-headline-md text-primary">Ticket Resolution Trend</h4>
+<select class="bg-surface-container border-none text-label-sm rounded-lg focus:ring-primary">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+</select>
+</div>
+<div class="h-64 flex items-end justify-between gap-2 px-2 relative">
+<!-- Simulated Chart Bars with tooltips -->
+<div class="group relative flex-1 flex flex-col items-center gap-2">
+<div class="chart-bar w-full bg-primary-fixed-dim rounded-t-lg" style="height: 45%;"></div>
+<span class="text-label-sm text-on-surface-variant">Jan</span>
+</div>
+<div class="group relative flex-1 flex flex-col items-center gap-2">
+<div class="chart-bar w-full bg-primary-fixed-dim rounded-t-lg" style="height: 60%;"></div>
+<span class="text-label-sm text-on-surface-variant">Feb</span>
+</div>
+<div class="group relative flex-1 flex flex-col items-center gap-2">
+<div class="chart-bar w-full bg-primary-fixed-dim rounded-t-lg" style="height: 55%;"></div>
+<span class="text-label-sm text-on-surface-variant">Mar</span>
+</div>
+<div class="group relative flex-1 flex flex-col items-center gap-2">
+<div class="chart-bar w-full bg-primary rounded-t-lg shadow-lg" style="height: 85%;"></div>
+<span class="text-label-sm text-primary font-bold">Apr</span>
+</div>
+<div class="group relative flex-1 flex flex-col items-center gap-2">
+<div class="chart-bar w-full bg-primary-fixed-dim rounded-t-lg" style="height: 70%;"></div>
+<span class="text-label-sm text-on-surface-variant">May</span>
+</div>
+<div class="group relative flex-1 flex flex-col items-center gap-2">
+<div class="chart-bar w-full bg-primary-fixed-dim rounded-t-lg" style="height: 78%;"></div>
+<span class="text-label-sm text-on-surface-variant">Jun</span>
+</div>
+</div>
+</div>
+<!-- Category Distribution -->
+<div class="lg:col-span-4 bg-white border border-outline-variant rounded-xl p-lg flex flex-col">
+<h4 class="font-headline-md text-primary mb-lg">Category Mix</h4>
+<div class="flex-1 flex flex-col justify-center gap-lg">
+<div class="relative flex justify-center">
+<!-- CSS-only Pie Chart Representation -->
+<div class="w-48 h-48 rounded-full border-[20px] border-primary flex items-center justify-center" style="border-right-color: #0a6c44; border-bottom-color: #f47d45;">
+<div class="text-center">
+<p class="text-headline-md font-bold">142</p>
+<p class="text-label-sm text-on-surface-variant">Tickets</p>
+</div>
+</div>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-primary rounded-full"></span>
+<span class="text-body-md">Academic</span>
+</div>
+<span class="font-bold">55%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-secondary rounded-full"></span>
+<span class="text-body-md">ERP / Tech</span>
+</div>
+<span class="font-bold">30%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-on-tertiary-container rounded-full"></span>
+<span class="text-body-md">Infrastructure</span>
+</div>
+<span class="font-bold">15%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Performance Table Section -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center">
+<h4 class="font-headline-md text-primary">Recent High-Impact Resolutions</h4>
+<button class="text-primary font-label-md hover:underline">View All Tickets</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant">
+<tr>
+<th class="px-lg py-sm text-label-sm text-on-surface-variant uppercase font-bold">Ticket ID</th>
+<th class="px-lg py-sm text-label-sm text-on-surface-variant uppercase font-bold">Category</th>
+<th class="px-lg py-sm text-label-sm text-on-surface-variant uppercase font-bold">Student</th>
+<th class="px-lg py-sm text-label-sm text-on-surface-variant uppercase font-bold">Rating</th>
+<th class="px-lg py-sm text-label-sm text-on-surface-variant uppercase font-bold">Outcome Summary</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-bold text-primary">#AC-8921</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-primary-fixed text-primary text-label-sm rounded">Academic</span>
+</td>
+<td class="px-lg py-md flex items-center gap-2">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A clean student avatar icon, showing a young adult with a professional and studious appearance against a soft blue gradient background. Minimalist and corporate design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCTJnqgwfE7a6dt_yBfOJnE9-jMjJjkjFByvRDgAFu4V2wMDUWHB3QfuWQD_j1c1oHJdHXm2mbPRRw4SnyMSSrOuaM0K_SZm_uWC1NvEF7UWDOKj162-aNhr7SSZEB4jTMDruiCUsQNoAwCNDThpqh994OYbMo3wnHqq3Mz0ubljDeaQLyMsWRctGtxxNGy3Lmuh1ep9stGbhjy6h1aeStHUiHEV9c9NpSRrMGAoJXqVIi9u78dc6FNA"/>
+<span class="text-body-md">Liam Vance</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant text-body-md max-w-xs truncate">Successfully appealed prerequisite block for CS-402.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-bold text-primary">#ER-5532</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-fixed-variant text-label-sm rounded">ERP / Tech</span>
+</td>
+<td class="px-lg py-md flex items-center gap-2">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A friendly female student avatar icon, featuring a bright, optimistic expression, in a circular frame with a subtle gray background. High-quality corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFSHgBOHz3cpxyV0hxJLi11UL6b74wH_495I7S1OyhpMoNFZkW3jtWKWDJptWi5pN0nYfN8hk9GCj-cWrQtCpNhmUPiuSzUm_R9Io5k1LrPrMt0Syx4_SNVobL7DgxJU3dQdnNEwgPQcSiHh_NW2maXK4eM-XruUFaI9Xg-Buofvq61YYIad8jVrBM_5sWKfTBO9pFKFqjWe8i8-ybAp-XqMbSkWpIZgAWDw_sw9bCgs8B1rGCcKoc2Q"/>
+<span class="text-body-md">Sarah Chen</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant text-body-md max-w-xs truncate">Resolved tuition waiver sync issue with finance portal.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-lg py-md font-bold text-primary">#IN-1209</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-tertiary-fixed text-tertiary text-label-sm rounded">Infrastructure</span>
+</td>
+<td class="px-lg py-md flex items-center gap-2">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A professional young male student avatar icon, showing a focused and determined expression, set against a neutral, high-key studio background. Modern UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN6Ac9VCuXxjggK2sMbopHjmPT27I9iNH389EB463lPuZa67hNsOUJBAOAL56NJGona4XOemSeESL0ZqjvWPnDH7oCIZzgGiVbc9toMTwYMoyJQvItcldz1VL0r4X6caPyPnfzkGEY4Q10B6ZNHuFQmdNSdi7aWyDpL8DQUQZbDJ3-9P8Sdj6cjcgRzITYnOGCX0-J4nD4HMFOJQTVPEi16Klp1juEjWXB08xt8M0DTY9a3P5HdnqY7g"/>
+<span class="text-body-md">Marcus Roy</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</td>
+<td class="px-lg py-md text-on-surface-variant text-body-md max-w-xs truncate">Expedited lab equipment request for Senior Project.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Professional Summary Card -->
+<div class="bg-primary-container text-on-primary-container rounded-xl p-lg flex flex-col md:flex-row gap-lg items-center relative overflow-hidden">
+<!-- Abstract visual element -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3"></div>
+<div class="flex-1 z-10">
+<h4 class="font-headline-md mb-2">Quarterly Summary</h4>
+<p class="text-body-lg opacity-90 mb-4">
+                        Dr. Thorne, your performance consistently exceeds departmental benchmarks. Your resolution speed (4.2h) is <span class="font-bold underline">15% faster</span> than the median, and your satisfaction rating (4.9) remains the highest in the Engineering Faculty.
+                    </p>
+<div class="flex gap-md">
+<div class="flex flex-col">
+<span class="text-label-sm uppercase opacity-70">Peer Percentile</span>
+<span class="text-headline-md font-bold">Top 2%</span>
+</div>
+<div class="w-[1px] bg-white/20 h-full self-stretch"></div>
+<div class="flex flex-col">
+<span class="text-label-sm uppercase opacity-70">SLA Compliance</span>
+<span class="text-headline-md font-bold">100%</span>
+</div>
+</div>
+</div>
+<div class="md:w-1/3 z-10">
+<button class="w-full bg-white text-primary font-bold py-md px-lg rounded-xl shadow-lg hover:bg-surface-container-high transition-all">
+                        Schedule Review Meeting
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Micro-interaction: Chart animation on load
+        window.addEventListener('load', () => {
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach(bar => {
+                const height = bar.style.height;
+                bar.style.height = '0';
+                setTimeout(() => {
+                    bar.style.height = height;
+                }, 200);
+            });
+        });
+
+        // TopAppBar Shadow Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+                header.classList.remove('border-b');
+            } else {
+                header.classList.remove('shadow-md');
+                header.classList.add('border-b');
+            }
+        });
+    </script>
+</body></html>

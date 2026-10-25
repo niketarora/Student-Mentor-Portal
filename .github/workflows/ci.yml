@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  build:
+    name: Lint, build and validate SQL
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install root (serverless API) dependencies
+        run: npm ci || npm install
+
+      - name: Install frontend dependencies
+        run: npm --prefix frontend ci || npm --prefix frontend install
+
+      - name: Lint frontend
+        run: npm --prefix frontend run lint
+
+      - name: UI regression tests (panel padding, modal focus)
+        run: npm --prefix frontend run test:ui
+
+      - name: Build frontend
+        env:
+          VITE_SUPABASE_URL: https://placeholder.supabase.co
+          VITE_SUPABASE_ANON_KEY: placeholder-anon-key
+        run: npm --prefix frontend run build
+
+      - name: Check serverless functions parse
+        run: |
+          for file in $(find api -name '*.js'); do
+            node --check "$file" || exit 1
+          done
+
+  database:
+    name: Apply migrations to a throwaway Postgres
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready --health-interval 10s
+          --health-timeout 5s --health-retries 5
+        ports: ['5432:5432']
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Supabase-compatible stubs
+        env:
+          PGPASSWORD: postgres
+        run: psql -h localhost -U postgres -v ON_ERROR_STOP=1 -f supabase/scripts/ci-supabase-stubs.sql
+
+      - name: Apply migrations in order
+        env:
+          PGPASSWORD: postgres
+        run: |
+          for file in supabase/migrations/*.sql; do
+            echo "--> $file"
+            psql -h localhost -U postgres -v ON_ERROR_STOP=1 -f "$file"
+          done
+
+      - name: Verify Row Level Security is on for every public table
+        env:
+          PGPASSWORD: postgres
+        run: |
+          UNPROTECTED=$(psql -h localhost -U postgres -tAc "
+            select string_agg(c.relname, ', ')
+            from pg_class c
+            join pg_namespace n on n.oid = c.relnamespace
+            where n.nspname = 'public' and c.relkind = 'r' and not c.relrowsecurity;")
+          if [ -n "$UNPROTECTED" ]; then
+            echo "::error::Tables without RLS: $UNPROTECTED"
+            exit 1
+          fi
+          echo "All public tables have RLS enabled."

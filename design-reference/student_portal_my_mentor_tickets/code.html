@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Portal | SSMP</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-primary-container": "#fffbff", "on-error": "#ffffff", "on-tertiary-fixed": "#1a1c1c", "error-container": "#ffdad6", "outline-variant": "#dfc0b5", "inverse-on-surface": "#f0f1f1", background: "#f9f9f9", primary: "#a43700", "primary-container": "#cd4800", "tertiary-fixed-dim": "#c7c6c6", "surface-dim": "#dadada", "primary-fixed": "#ffdbcf", "on-background": "#1a1c1c", "surface-container-low": "#f3f3f4", "secondary-container": "#fd7039", "surface-container-lowest": "#ffffff", "primary-fixed-dim": "#ffb59a", "on-error-container": "#93000a", "surface-bright": "#f9f9f9", "tertiary-fixed": "#e3e2e2", secondary: "#a93700", "on-tertiary-fixed-variant": "#464747", "on-secondary": "#ffffff", "tertiary-container": "#747575", "on-primary-fixed-variant": "#802a00", outline: "#8b7268", tertiary: "#5b5c5c", "on-surface-variant": "#574239", "on-tertiary-container": "#fdfcfc", surface: "#f9f9f9", "on-secondary-fixed": "#380d00", "on-secondary-container": "#601c00", "inverse-primary": "#ffb59a", "secondary-fixed": "#ffdbcf", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#812800", "surface-container-high": "#e8e8e8", "inverse-surface": "#2f3131", "on-surface": "#1a1c1c", "surface-container": "#eeeeee", "on-primary-fixed": "#380d00", "surface-container-highest": "#e2e2e2", "on-tertiary": "#ffffff", "secondary-fixed-dim": "#ffb59b", "surface-variant": "#e2e2e2", error: "#ba1a1a", "surface-tint": "#a83900"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {base: "4px", xs: "8px", sm: "16px", lg: "32px", margin: "24px", gutter: "20px", xl: "48px", md: "24px"}, fontFamily: {"body-md": ["Hanken Grotesk"], "label-md": ["Hanken Grotesk"], "headline-lg-mobile": ["Manrope"], "body-lg": ["Hanken Grotesk"], "headline-md": ["Manrope"], "display-lg": ["Manrope"], "headline-lg": ["Manrope"], "label-sm": ["Hanken Grotesk"], headline: ["Manrope"], display: ["Manrope"], body: ["Hanken Grotesk"], label: ["Hanken Grotesk"]}, fontSize: {"body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "20px", fontWeight: "600"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800"}], "headline-lg": ["32px", {lineHeight: "40px", fontWeight: "700"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}]}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-completed { color: #0a6c44; }
+        .step-active { color: #002045; border-bottom: 2px solid #002045; }
+        .workflow-line { height: 2px; flex-grow: 1; background-color: #e0e3e5; margin: 0 12px; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background">
+<!-- Top AppBar -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-margin h-16 sticky top-0 z-50">
+<div class="flex items-center gap-sm">
+<span class="font-headline-md text-headline-md font-bold text-primary">SSMP Portal</span>
+<div class="hidden md:flex ml-lg gap-md">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary py-xs" href="#">Student Portal</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-xs rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant ml-xs">
+<span class="material-symbols-outlined flex items-center justify-center w-full h-full text-on-surface-variant">account_circle</span>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin py-lg">
+<!-- Workflow Tracker -->
+<section class="mb-xl">
+<div class="flex items-center justify-center overflow-x-auto pb-sm">
+<div class="flex items-center gap-xs min-w-max">
+<div class="flex flex-col items-center gap-xs">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Login</span>
+</div>
+<div class="workflow-line bg-secondary w-24"></div>
+<div class="flex flex-col items-center gap-xs">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined">check</span>
+</div>
+<span class="font-label-md text-label-md text-secondary">Security</span>
+</div>
+<div class="workflow-line bg-secondary w-24"></div>
+<div class="flex flex-col items-center gap-xs">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined">dashboard</span>
+</div>
+<span class="font-label-md text-label-md text-primary">Dashboard</span>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Sidebar (Left Column) -->
+<aside class="lg:col-span-4 space-y-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Student Profile</h3>
+<div class="flex items-center gap-md mb-md">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container"><div class="w-full h-full flex items-center justify-center bg-surface-container-high text-primary"><span class="material-symbols-outlined text-[40px]">account_circle</span></div></div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Reg No. 2428020190</p>
+<p class="font-headline-md text-headline-md text-on-surface">Aman Sharma</p>
+</div>
+</div>
+<div class="space-y-xs border-t border-outline-variant pt-md">
+<div class="flex justify-between">
+<span class="text-on-surface-variant text-label-md">Section</span>
+<span class="font-label-md text-primary">CSE-A</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant text-label-md">Branch</span>
+<span class="font-label-md text-primary">Computer Science</span>
+</div>
+<div class="flex justify-between">
+<span class="text-on-surface-variant text-label-md">Semester</span>
+<span class="font-label-md text-primary">1st Semester</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area (Right Column) -->
+<section class="lg:col-span-8 space-y-lg">
+<!-- Raised Tickets Section -->
+<div>
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-headline-lg text-headline-lg text-primary">Recent Tickets</h2>
+<button class="text-primary font-label-md flex items-center gap-xs hover:underline">
+<span class="material-symbols-outlined">add_circle</span>
+                            Raise New Ticket
+                        </button>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant">
+<th class="px-md py-sm font-label-md text-on-surface-variant">Ticket ID</th>
+<th class="px-md py-sm font-label-md text-on-surface-variant">Subject</th>
+<th class="px-md py-sm font-label-md text-on-surface-variant">Status</th>
+<th class="px-md py-sm font-label-md text-on-surface-variant">Last Update</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-md py-md font-label-md text-primary">#TK-8921</td>
+<td class="px-md py-md">
+<p class="font-label-md text-on-surface">Request for elective change</p>
+<p class="text-label-sm text-on-surface-variant">Academic Affairs</p>
+</td>
+<td class="px-md py-md">
+<span class="inline-flex items-center gap-1 px-xs py-0.5 rounded bg-secondary-container text-on-secondary-container text-label-sm font-bold uppercase">
+                                            Resolved
+                                        </span>
+</td>
+<td class="px-md py-md text-label-sm text-on-surface-variant">2 days ago</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-md py-md font-label-md text-primary">#TK-9045</td>
+<td class="px-md py-md">
+<p class="font-label-md text-on-surface">Library access issue</p>
+<p class="text-label-sm text-on-surface-variant">Infrastructure</p>
+</td>
+<td class="px-md py-md">
+<span class="inline-flex items-center gap-1 px-xs py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-bold uppercase">
+                                            In Progress
+                                        </span>
+</td>
+<td class="px-md py-md text-label-sm text-on-surface-variant">Today, 09:15 AM</td>
+</tr>
+</tbody>
+</table>
+<div class="p-md text-center border-t border-outline-variant">
+<button class="text-label-md text-on-surface-variant hover:text-primary transition-colors">View All Tickets</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="mt-xl border-t border-outline-variant bg-surface py-lg text-center">
+<p class="text-label-sm text-on-surface-variant">© 2024 Student-Mentor Management Portal. All rights reserved.</p>
+</footer>
+</body></html>

@@ -1,0 +1,32 @@
+{
+  "name": "ssmp-platform",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Student Mentorship Portal (Academic Nexus) \u2014 Supabase + React + Vercel",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "lint": "npm --prefix frontend run lint",
+    "install:all": "npm install && npm --prefix frontend install",
+    "db:push": "supabase db push",
+    "db:reset": "supabase db reset",
+    "db:seed": "node supabase/scripts/seed-demo-accounts.mjs",
+    "db:admin": "node supabase/scripts/create-admin-account.mjs",
+    "db:seniors": "node supabase/scripts/sync-senior-mentors.mjs",
+    "sample:files": "node sample-data/cluster-head-sample-data.mjs",
+    "verify:security": "node supabase/scripts/verify-security-policies.mjs",
+    "test": "npm --prefix frontend run test:ui && node api/_lib/spreadsheet-parser.check.mjs",
+    "test:parser": "node api/_lib/spreadsheet-parser.check.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.1",
+    "exceljs": "^4.4.0",
+    "pdf-lib": "^1.17.1",
+    "zod": "^3.24.1"
+  }
+}

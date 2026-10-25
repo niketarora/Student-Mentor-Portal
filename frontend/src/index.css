@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-on-surface font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-headline;
+  }
+
+  /* Visible keyboard focus everywhere — accessibility, not decoration. */
+  :focus-visible {
+    outline: 2px solid theme('colors.primary');
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* ── Card: white, softly rounded, hairline warm border ─────────────── */
+  .panel {
+    @apply bg-surface-container-lowest border border-topbar-border rounded-xl shadow-card overflow-hidden;
+  }
+
+  /* Section header strip: soft peach with an icon and an uppercase label */
+  .panel-header {
+    @apply flex flex-wrap items-center gap-2 bg-primary-fixed px-5 py-3 border-b border-topbar-border;
+  }
+
+  .panel-header-title {
+    @apply text-label-md uppercase tracking-wide text-on-primary-fixed;
+  }
+
+  /* ── Form controls ─────────────────────────────────────────────────── */
+  .field-label {
+    @apply block text-label-sm uppercase tracking-wide text-on-surface-variant mb-1.5;
+  }
+
+  /* px-4 keeps text clear of the border on every input, select and
+     textarea — including selects, which also need room for the chevron. */
+  .field-input {
+    @apply w-full rounded-lg border border-outline-variant bg-surface-container-lowest
+           px-4 py-2.5 text-body-sm text-on-surface placeholder:text-tertiary
+           focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:bg-surface-container-low
+           disabled:text-tertiary disabled:cursor-not-allowed transition-colors;
+  }
+
+  select.field-input {
+    @apply pr-10;
+  }
+
+  .field-error {
+    @apply mt-1 text-label-sm text-error;
+  }
+
+  /* ── Buttons ───────────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-label-md
+           transition-colors disabled:opacity-50 disabled:cursor-not-allowed
+           focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-on-primary hover:bg-primary-container;
+  }
+
+  .btn-secondary {
+    @apply btn bg-surface-container-lowest text-primary border border-outline-variant hover:bg-primary-fixed;
+  }
+
+  .btn-ghost {
+    @apply btn text-on-surface-variant hover:bg-surface-container;
+  }
+
+  .btn-danger {
+    @apply btn bg-error text-on-error hover:bg-on-error-container;
+  }
+
+  .btn-sm {
+    @apply px-3.5 py-2 text-label-sm;
+  }
+
+  /* ── Sidebar: white rail, solid orange pill for the current page ───── */
+  .sidebar-link {
+    @apply flex items-center gap-3 rounded-lg px-4 py-2.5 text-body-sm text-sidebar-text
+           transition-colors hover:bg-sidebar-hover hover:text-primary;
+  }
+
+  .sidebar-link-active {
+    @apply bg-sidebar-active text-white font-semibold shadow-sm hover:bg-sidebar-active hover:text-white;
+  }
+
+  /* ── Tables ────────────────────────────────────────────────────────── */
+  .data-table {
+    @apply w-full text-body-sm border-collapse;
+  }
+
+  /* No text-align here on purpose: DataTable sets it per column on BOTH
+     the th and the td, so a right-aligned number always sits directly
+     under its own header. px-5 keeps cells clear of the card edge. */
+  .data-table thead th {
+    @apply bg-surface-container-low text-label-sm uppercase tracking-wide text-on-surface-variant
+           px-5 py-3 border-b border-topbar-border whitespace-nowrap;
+  }
+
+  .data-table tbody td {
+    @apply px-5 py-3 border-b border-surface-container align-middle;
+  }
+
+  .data-table tbody tr:last-child td {
+    @apply border-b-0;
+  }
+
+  .data-table tbody tr:hover {
+    @apply bg-surface-container-low/70;
+  }
+
+  /* ── Misc ──────────────────────────────────────────────────────────── */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-label-sm;
+  }
+
+  /* Long unbroken strings — emails, addresses, file paths — must wrap
+     inside their card instead of spilling past the edge. */
+  .break-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .skeleton {
+    @apply rounded-lg bg-surface-container-high;
+    background-image: linear-gradient(
+      90deg,
+      theme('colors.surface-container-high') 0%,
+      theme('colors.surface-container-low') 50%,
+      theme('colors.surface-container-high') 100%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer;
+  }
+}
+
+/* Material Symbols icon font, used throughout the shell. */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #e7ddd6; border-radius: 8px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #c2410c; }
+
+@media print {
+  .no-print { display: none !important; }
+}

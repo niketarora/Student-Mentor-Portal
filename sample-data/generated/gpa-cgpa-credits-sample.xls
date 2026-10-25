@@ -1,0 +1,10 @@
+<div class="col-lg-12">
+  <h4><span id="spnHeaderTable"> Student's CGPA / GPA &amp; Credits</span></h4>
+  <table border="1" id="kt_ViewTable">
+    <thead><tr><th rowspan="2">S. No.</th><th rowspan="2">Registration No.</th><th rowspan="2">Student Name</th><th rowspan="2">CGPA</th><th rowspan="2">Total Earned Credits</th><th rowspan="2">Total Required Credits</th><th colspan="3">Semester I</th><th colspan="3">Semester II</th><th colspan="3">Semester III</th></tr><tr><th>GPA</th><th>Earned Credits</th><th>Req Credits</th><th>GPA</th><th>Earned Credits</th><th>Req Credits</th><th>GPA</th><th>Earned Credits</th><th>Req Credits</th></tr></thead>
+    <tr><td>1</td><td>2428020221</td><td>John Doe</td><td>7.00</td><td>40.00</td><td>-</td><td>7.20</td><td>20.00</td><td>-</td><td>6.80</td><td>20.00</td><td>-</td><td>-</td><td>-</td><td>24.00</td></tr>
+<tr><td>2</td><td>2428020222</td><td>Jane Smith</td><td>5.78</td><td>37.00</td><td>-</td><td>6.10</td><td>20.00</td><td>-</td><td>5.40</td><td>17.00</td><td>-</td><td>-</td><td>-</td><td>24.00</td></tr>
+<tr><td>3</td><td>2428020223</td><td>Mike Davis</td><td>7.25</td><td>40.00</td><td>-</td><td>7.40</td><td>20.00</td><td>-</td><td>7.10</td><td>20.00</td><td>-</td><td>-</td><td>-</td><td>24.00</td></tr>
+<tr><td>4</td><td>2428020224</td><td>Emily Wilson</td><td>8.10</td><td>40.00</td><td>-</td><td>8.00</td><td>20.00</td><td>-</td><td>8.20</td><td>20.00</td><td>-</td><td>-</td><td>-</td><td>24.00</td></tr>
+  </table>
+</div>

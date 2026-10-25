@@ -1,0 +1,22 @@
+# Senior / alumni mentors (migration 0042).
+#
+# Copy this file to supabase/senior-mentors.txt (which is not committed,
+# because it holds real e-mail addresses), list the seniors, then run:
+#
+#   npm run db:seniors              add and remove seniors to match this list
+#   npm run db:seniors -- --dry-run see what would change first
+#
+# One senior per line: their e-mail, optionally a comma and their name.
+# New accounts get the shared temporary password and must change it at
+# first sign-in. Removing a line and running again deletes the accounts the
+# list created (their juniors' queries move to the faculty mentors); a
+# student who was already in the portal just stops being a senior.
+# Nobody is removed while a line is not an e-mail address, or when the
+# list is empty (unless you run npm run db:seniors -- --allow-empty).
+#
+# Then a HOD gives each senior their sections: HOD portal -> Senior Mentors.
+#
+# For example (remove the # to use a line; these addresses are made up):
+#
+# senior.one@example.edu, Senior One
+# senior.two@example.edu

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Academic Nexus | Ticket Queue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#5b5c5c",
+                    "tertiary-fixed": "#e3e2e2",
+                    "inverse-surface": "#2f3131",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#dadada",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#fd7039",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary-fixed-variant": "#812800",
+                    "secondary-fixed": "#ffdbcf",
+                    "primary-container": "#cd4800",
+                    "primary": "#a43700",
+                    "on-surface": "#1a1c1c",
+                    "background": "#f9f9f9",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#fffbff",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-fixed": "#380d00",
+                    "on-background": "#1a1c1c",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#747575",
+                    "secondary": "#a93700",
+                    "on-tertiary-container": "#fdfcfc",
+                    "on-surface-variant": "#574239",
+                    "on-primary-fixed-variant": "#802a00",
+                    "tertiary-fixed-dim": "#c7c6c6",
+                    "on-secondary-container": "#601c00",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f3f3f4",
+                    "inverse-primary": "#ffb59a",
+                    "on-tertiary-fixed-variant": "#464747",
+                    "surface": "#f9f9f9",
+                    "primary-fixed": "#ffdbcf",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#a83900",
+                    "secondary-fixed-dim": "#ffb59b",
+                    "surface-container": "#eeeeee",
+                    "outline": "#8b7268",
+                    "primary-fixed-dim": "#ffb59a",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-secondary-fixed": "#380d00",
+                    "surface-container-high": "#e8e8e8",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f1",
+                    "outline-variant": "#dfc0b5",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "display": ["Manrope"],
+                    "body": ["Hanken Grotesk"],
+                    "label": ["Hanken Grotesk"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .sidebar-item-active { background-color: #fd7039; color: #601c00; font-weight: 700; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e2e2; border-radius: 10px; }
+        .row-hover-action { opacity: 0; transition: opacity 0.2s ease-in-out; }
+        tr:hover .row-hover-action { opacity: 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar (Authority: JSON) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container border-r border-outline-variant p-4 flex flex-col z-50">
+<div class="flex items-center gap-3 px-2 mb-8">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<div>
+<h1 class="font-headline text-headline-md font-extrabold text-primary leading-tight">Academic Nexus</h1>
+<p class="text-label-sm text-on-surface-variant">Faculty Portal</p>
+</div>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+<span class="font-label text-label-md">Ticket Queue</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label text-label-md">Performance</span>
+</a>
+</nav>
+<div class="pt-4 mt-auto border-t border-outline-variant space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="flex-1 ml-64 flex flex-col min-w-0">
+<!-- TopNavBar (Authority: JSON) -->
+<header class="sticky top-0 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center w-full px-6 py-3 z-40 shadow-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-body-md focus:ring-2 focus:ring-primary" placeholder="Search tickets, students, or IDs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-px bg-outline-variant mx-1"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-label-md font-bold text-on-surface">Dr. Sarah Jenkins</p>
+<p class="text-label-sm text-on-surface-variant">Senior Faculty Mentor</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center border-2 border-primary-container overflow-hidden">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1; font-size: 28px;">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="p-8 flex-grow custom-scrollbar overflow-y-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h2 class="font-headline text-headline-lg text-on-surface font-bold">Support Ticket Queue</h2>
+<span class="px-3 py-1 bg-primary text-on-primary text-label-sm rounded-full font-bold">12 Pending</span>
+</div>
+<p class="text-body-md text-on-surface-variant">Manage and respond to student inquiries across academic and technical domains.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-on-primary px-5 py-2.5 rounded-lg font-bold shadow-md hover:bg-primary-container transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+<span>Create Ticket</span>
+</button>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-outline-variant mb-6 shadow-sm flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-2 pr-4 border-r border-outline-variant">
+<span class="text-label-md text-on-surface-variant">Status:</span>
+<div class="flex bg-surface-container rounded-lg p-1">
+<button class="px-4 py-1.5 text-label-md rounded-md bg-surface-container-lowest text-primary shadow-sm font-bold">All</button>
+<button class="px-4 py-1.5 text-label-md rounded-md text-on-surface-variant hover:text-on-surface">Open</button>
+<button class="px-4 py-1.5 text-label-md rounded-md text-on-surface-variant hover:text-on-surface">In Progress</button>
+<button class="px-4 py-1.5 text-label-md rounded-md text-on-surface-variant hover:text-on-surface">Urgent</button>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-label-md text-on-surface-variant">Category:</span>
+<select class="bg-surface-container-low border-outline-variant text-label-md rounded-lg px-4 py-1.5 focus:ring-primary focus:border-primary">
+<option>All Categories</option>
+<option>Academic</option>
+<option>ERP/Tech</option>
+<option>Infrastructure</option>
+</select>
+</div>
+<div class="flex items-center gap-2 ml-auto">
+<span class="text-label-md text-on-surface-variant">Timeframe:</span>
+<button class="flex items-center gap-2 bg-surface-container-low border border-outline-variant text-label-md rounded-lg px-4 py-1.5 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Last 30 Days</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container-high">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Ticket List Table -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-4 text-label-md text-on-surface-variant font-bold">Ticket ID</th>
+<th class="px-6 py-4 text-label-md text-on-surface-variant font-bold">Student</th>
+<th class="px-6 py-4 text-label-md text-on-surface-variant font-bold">Subject</th>
+<th class="px-6 py-4 text-label-md text-on-surface-variant font-bold text-center">Category</th>
+<th class="px-6 py-4 text-label-md text-on-surface-variant font-bold text-center">Status</th>
+<th class="px-6 py-4 text-label-md text-on-surface-variant font-bold text-center">Priority</th>
+<th class="px-6 py-4 text-label-md text-on-surface-variant font-bold">Last Update</th>
+<th class="px-6 py-4 text-label-md text-on-surface-variant font-bold"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1: Urgent Ticket -->
+<tr class="group hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold text-primary">#AN-8924</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">person</span>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">Alex Rivera</p>
+<p class="text-label-sm text-on-surface-variant">ID: 2024-ST-012</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="text-body-md font-semibold text-on-surface truncate">Incomplete Grading in Advanced Algorithms</p>
+<p class="text-label-sm text-on-surface-variant truncate">Student claims final project grade is missing from portal.</p>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-xs rounded-md font-bold uppercase tracking-wider">Academic</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-error-container text-on-error-container text-xs rounded-full font-bold">Open</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex items-center justify-center gap-1.5 text-error font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+                                    URGENT
+                                </div>
+</td>
+<td class="px-6 py-4 text-label-sm text-on-surface-variant">2 hours ago</td>
+<td class="px-6 py-4 text-right">
+<button class="row-hover-action text-primary font-bold text-label-md flex items-center gap-1 ml-auto">
+                                    View <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 2: In Progress -->
+<tr class="group hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold text-primary">#AN-8910</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">person_4</span>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">Maya Chen</p>
+<p class="text-label-sm text-on-surface-variant">ID: 2024-ST-455</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="text-body-md font-semibold text-on-surface truncate">ERP Login Credentials Expired</p>
+<p class="text-label-sm text-on-surface-variant truncate">Unable to access the student dashboard after 3 attempts.</p>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2 py-1 bg-secondary-fixed text-on-secondary-fixed-variant text-xs rounded-md font-bold uppercase tracking-wider">ERP/Tech</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-xs rounded-full font-bold">In Progress</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex items-center justify-center gap-1.5 text-primary font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]">signal_cellular_alt</span>
+                                    MEDIUM
+                                </div>
+</td>
+<td class="px-6 py-4 text-label-sm text-on-surface-variant">Yesterday</td>
+<td class="px-6 py-4 text-right">
+<button class="row-hover-action text-primary font-bold text-label-md flex items-center gap-1 ml-auto">
+                                    View <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 3: High Priority -->
+<tr class="group hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold text-primary">#AN-8895</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-tertiary text-sm" style="font-variation-settings: 'FILL' 1;">person_2</span>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">James Wilson</p>
+<p class="text-label-sm text-on-surface-variant">ID: 2023-ST-098</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="text-body-md font-semibold text-on-surface truncate">Lab Equipment Request for Semester 3</p>
+<p class="text-label-sm text-on-surface-variant truncate">Need specialized sensors for the robotics workshop.</p>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2 py-1 bg-surface-container-highest text-on-surface text-xs rounded-md font-bold uppercase tracking-wider">Infrastructure</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-error-container text-on-error-container text-xs rounded-full font-bold">Open</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex items-center justify-center gap-1.5 text-primary-container font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]">expand_less</span>
+                                    HIGH
+                                </div>
+</td>
+<td class="px-6 py-4 text-label-sm text-on-surface-variant">3 days ago</td>
+<td class="px-6 py-4 text-right">
+<button class="row-hover-action text-primary font-bold text-label-md flex items-center gap-1 ml-auto">
+                                    View <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</td>
+</tr>
+<!-- Row 4: Low Priority -->
+<tr class="group hover:bg-surface-container-low transition-colors cursor-pointer">
+<td class="px-6 py-4 font-bold text-primary">#AN-8890</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed-dim flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">person_3</span>
+</div>
+<div>
+<p class="text-label-md font-bold text-on-surface">Sophia Garcia</p>
+<p class="text-label-sm text-on-surface-variant">ID: 2024-ST-221</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 max-w-xs">
+<p class="text-body-md font-semibold text-on-surface truncate">Request for Internship Certificate</p>
+<p class="text-label-sm text-on-surface-variant truncate">Has completed the program and needs digital copy.</p>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-2 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-xs rounded-md font-bold uppercase tracking-wider">Academic</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant text-xs rounded-full font-bold">Resolved</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex items-center justify-center gap-1.5 text-on-surface-variant font-bold text-xs">
+<span class="material-symbols-outlined text-[16px]">expand_more</span>
+                                    LOW
+                                </div>
+</td>
+<td class="px-6 py-4 text-label-sm text-on-surface-variant">Last Week</td>
+<td class="px-6 py-4 text-right">
+<button class="row-hover-action text-primary font-bold text-label-md flex items-center gap-1 ml-auto">
+                                    View <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="bg-surface-container-low px-6 py-4 flex items-center justify-between">
+<p class="text-label-sm text-on-surface-variant">Showing <span class="font-bold text-on-surface">1 - 4</span> of <span class="font-bold text-on-surface">42</span> tickets</p>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary text-on-primary font-bold text-label-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-highest transition-colors font-bold text-label-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-highest transition-colors font-bold text-label-sm">3</button>
+<span class="px-1 text-on-surface-variant">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-highest transition-colors font-bold text-label-sm">11</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Dashboard Insights (Bento Style) -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Avg Response Time</p>
+<h3 class="font-headline text-headline-md font-extrabold text-on-surface">1h 24m</h3>
+<p class="text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">arrow_downward</span>
+                            12% from last week
+                        </p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Resolution Rate</p>
+<h3 class="font-headline text-headline-md font-extrabold text-on-surface">94.2%</h3>
+<p class="text-label-sm text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">arrow_upward</span>
+                            3% improvement
+                        </p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">forum</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider font-bold">Total Interactions</p>
+<h3 class="font-headline text-headline-md font-extrabold text-on-surface">1,284</h3>
+<p class="text-label-sm text-on-surface-variant">Active semester volume</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Simple click interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                const ticketId = row.querySelector('td:first-child').innerText;
+                console.log(`Navigating to details for ticket: ${ticketId}`);
+                // In a real app: window.location.href = `/tickets/${ticketId}`;
+                alert(`Opening details for Ticket ${ticketId}`);
+            });
+        });
+
+        // Hover effect enhancement
+        document.querySelectorAll('.row-hover-action').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent row click from firing
+                const ticketId = btn.closest('tr').querySelector('td:first-child').innerText;
+                alert(`Viewing details for ${ticketId}`);
+            });
+        });
+    </script>
+</body></html>

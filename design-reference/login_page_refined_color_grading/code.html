@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Manipal University Jaipur - MUJ Portal</title>
+<!-- Google Fonts: Manrope for headlines, Hanken Grotesk for body -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Hanken+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#a43700", secondary: "#a93700", "primary-container": "#cd4800", "on-primary-container": "#fffbff", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#1a1c1c", "on-secondary-fixed": "#380d00", "surface-container": "#eeeeee", "outline-variant": "#dfc0b5", "on-primary-fixed": "#380d00", outline: "#8b7268", "on-secondary-fixed-variant": "#812800", "on-tertiary-container": "#fdfcfc", "on-tertiary": "#ffffff", error: "#ba1a1a", "tertiary-container": "#747575", "inverse-surface": "#2f3131", "on-tertiary-fixed-variant": "#464747", "on-secondary": "#ffffff", "surface-container-high": "#e8e8e8", "on-error-container": "#93000a", "secondary-fixed": "#ffdbcf", "inverse-primary": "#ffb59a", "on-primary-fixed-variant": "#802a00", "surface-container-highest": "#e2e2e2", "secondary-fixed-dim": "#ffb59b", "error-container": "#ffdad6", "on-error": "#ffffff", "on-surface-variant": "#574239", "surface-container-low": "#f3f3f4", "surface-dim": "#dadada", "surface-variant": "#e2e2e2", "surface-tint": "#a83900", "secondary-container": "#fd7039", "surface-bright": "#f9f9f9", "primary-fixed": "#ffdbcf", "on-secondary-container": "#601c00", "inverse-on-surface": "#f0f1f1", tertiary: "#5b5c5c", background: "#f9f9f9", "tertiary-fixed": "#e3e2e2", "on-primary": "#ffffff", "on-surface": "#1a1c1c", surface: "#f9f9f9", "tertiary-fixed-dim": "#c7c6c6", "on-background": "#1a1c1c", "primary-fixed-dim": "#ffb59a"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {xl: "48px", sm: "16px", md: "24px", lg: "32px", gutter: "20px", base: "4px", xs: "8px", margin: "24px"}, fontFamily: {"label-md": ["Hanken Grotesk"], "label-sm": ["Hanken Grotesk"], "display-lg": ["Manrope"], "body-md": ["Hanken Grotesk"], "headline-lg-mobile": ["Manrope"], "body-lg": ["Hanken Grotesk"], "headline-md": ["Manrope"], "headline-lg": ["Manrope"], headline: ["Manrope"], display: ["Manrope"], body: ["Hanken Grotesk"], label: ["Hanken Grotesk"]}, fontSize: {"label-md": ["14px", {lineHeight: "20px", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "display-lg": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "800"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "headline-lg": ["32px", {lineHeight: "40px", fontWeight: "700"}]}}}};</script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .form-input-focus:focus {
+            outline: 2px solid #D97706;
+            outline-offset: -1px;
+            border-color: transparent;
+        }
+        /* Custom terracotta overlay filter */
+        .terracotta-overlay {
+            background-color: rgba(217, 119, 6, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex items-center justify-center p-0 overflow-hidden">
+<!-- Main Container: Split Screen -->
+<main class="flex w-full min-h-screen">
+<!-- Left Side: Hero Image Container -->
+<section class="hidden lg:block lg:w-3/5 xl:w-2/3 relative overflow-hidden">
+<div class="absolute inset-0 terracotta-overlay z-10"></div>
+<div class="absolute inset-0 bg-black/20 z-10"></div>
+<!-- Updated to use campus building from reference image context -->
+<img alt="Manipal University Jaipur Campus" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqNKuXJ07O5Jv8Vl7oG9uVNmLu6Ba8KMDeleZJP-Ee6YmlQgKUmfLkgkKZF_uE4IHMTsywYrVQOctKR0AjZRsgBp7kE_DoKLdv4tJtBqdf3aI4usxQfR-D9iHPddOBmjIl2tUt8pmsJ1WHe0iE0r9Da1C1ZeFUZTCHOCSCK_ZKKRVhvlXfgZ8hB-3t6zKxZeOT2xmFiccaioUhoaQdzcWsSJbVqT0XhqcvWx4lsVA9VPoksrjIb7N4rH3Y60ih9216vQ"/>
+<!-- Floating Branding Overlay -->
+<div class="absolute bottom-xl left-xl z-20 max-w-md bg-white/10 backdrop-blur-md p-lg border border-white/20 rounded-xl" style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 32px 0px;">
+<h1 class="font-display-lg text-display-lg text-white mb-sm">SSMP Portal</h1>
+<p class="font-body-lg text-body-lg text-white/90">Experience academic excellence at Manipal University Jaipur.</p>
+</div>
+</section>
+<!-- Right Side: Login Form Container -->
+<section class="w-full lg:w-2/5 xl:w-1/3 flex flex-col justify-between p-lg md:p-xl shadow-2xl z-30 bg-surface-container-lowest">
+<!-- Top Branding -->
+<div class="flex flex-col items-center lg:items-start space-y-sm">
+<div class="flex items-center space-x-sm">
+<!-- Placeholder for MUJ Logo style -->
+<div class="h-16 mb-xs"><img alt="Manipal University Jaipur Logo" class="h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBE5qk7VCwMouDJV_sZXyNWv0cJl6zn9nQQQKEBhmTYdlXbx6tLmc-zoSSrBuqh1XiPNwqKLABEzDHS_deenT068EH_PNL9ItQmbu9Mnrciqm7B0DMWQlehIhcQsPG_Rzw2ymbTa3bfrsIkAUbaR2WaQV6Q3ytMn-kge6ZiYAZYKr7h5H0sTB83t2UJInr_yTFHueQWRqF77-hi4p4DiZIO6uzUrRsUGya29tskxwNwGgdEUzI880VmrPrg6Rw6lIrfcw"/></div>
+</div>
+</div>
+<!-- Login Form Content -->
+<div class="max-w-md w-full mx-auto lg:mx-0 py-xl">
+<div class="mb-lg text-center lg:text-left">
+<p class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-xs">Welcome to SSMP Portal</p>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Sign In</h2>
+</div>
+<form class="space-y-md" onsubmit="event.preventDefault();">
+<!-- Login ID with @muj.manipal.edu suffix -->
+<div class="flex flex-col space-y-xs">
+<div class="relative flex items-center">
+<input class="w-full px-sm py-sm rounded-xl border border-outline-variant bg-surface-container-low font-body-md text-body-md form-input-focus transition-all" id="login_id" placeholder="Registration Number" type="text"/>
+</div>
+</div>
+<!-- Password -->
+<div class="flex flex-col space-y-xs">
+<div class="relative">
+<input class="w-full px-sm py-sm rounded-xl border border-outline-variant bg-surface-container-low font-body-md text-body-md form-input-focus transition-all" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-sm top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Dual Login Actions -->
+<div class="pt-sm space-y-md">
+<div class="flex flex-col sm:flex-row gap-sm">
+<button class="flex-1 bg-primary text-white font-label-md py-3 rounded-full hover:opacity-90 active:scale-[0.98] transition-all shadow-md flex items-center justify-center space-x-xs" type="submit">
+<span>Sign In</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="flex-1 bg-secondary text-white font-label-md py-3 rounded-full hover:opacity-90 active:scale-[0.98] transition-all shadow-md flex items-center justify-center space-x-xs" type="button">
+<span>Faculty Login</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="flex items-center justify-center lg:justify-start">
+<a class="font-label-md text-label-md text-secondary hover:text-primary transition-all font-semibold" href="#">Forgot Password?</a>
+</div>
+</div>
+</form>
+</div>
+<!-- Footer -->
+<footer class="border-t border-outline-variant pt-md mt-lg flex flex-col items-center lg:items-start text-on-surface-variant">
+<span class="font-label-sm text-label-sm">University under Section 2(f) of the UGC Act</span>
+<span class="font-label-sm text-label-sm mt-xs">© 2024 Manipal University Jaipur</span>
+</footer>
+</section>
+</main>
+<!-- Micro-interaction Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Password Toggle logic
+        const togglePassBtn = document.querySelector('button .material-symbols-outlined')?.parentElement;
+        const togglePassIcon = document.querySelector('button .material-symbols-outlined');
+        
+        if (togglePassBtn && togglePassIcon) {
+            togglePassBtn.addEventListener('click', () => {
+                const passInput = document.getElementById('password');
+                if (passInput.type === 'password') {
+                    passInput.type = 'text';
+                    togglePassIcon.textContent = 'visibility_off';
+                } else {
+                    passInput.type = 'password';
+                    togglePassIcon.textContent = 'visibility';
+                }
+            });
+        }
+    });
+</script>
+</body></html>

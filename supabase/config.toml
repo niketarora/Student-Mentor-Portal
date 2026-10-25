@@ -1,0 +1,76 @@
+# Supabase CLI project config — used by `supabase start` / `supabase db reset`
+project_id = "ssmp-platform"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 15
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173"]
+
+# ── Session length ───────────────────────────────────────────────────
+# Users were being signed out far too often. What actually controls how
+# long someone stays signed in is NOT jwt_expiry — that is the life of one
+# access token, and the client silently swaps it for a new one in the
+# background. What ends a session is the refresh token expiring.
+#
+#   jwt_expiry        how long one access token is valid (max 604800 = 7d)
+#   inactivity_timeout  how long a session survives with no activity
+#   timebox           a hard cap on session age regardless of activity
+#
+# Access tokens stay SHORT on purpose: a stolen token is only useful until
+# it expires, and RLS confines it to what that one user could already see
+# (see the note in frontend/src/lib/supabaseClient.js). Length of session
+# comes from the inactivity window instead, which is the safer of the two
+# knobs to widen.
+jwt_expiry = 3600                    # 1 hour, rotated silently by the client
+enable_refresh_token_rotation = true
+refresh_token_reuse_interval = 10
+enable_signup = false            # accounts are provisioned by the HOD, never self-signup
+enable_manual_linking = false
+
+[auth.sessions]
+# Roughly a month of not signing in again, as asked for. A session that
+# goes untouched for 30 days ends; one that is used stays alive.
+inactivity_timeout = "720h"      # 30 days
+# No timebox: a hard cap would sign people out mid-semester even while they
+# were actively using the portal, which is the exact complaint this change
+# is meant to fix. Set one here if a policy ever requires it.
+
+# ── Hosted projects need this set in the dashboard too ────────────────
+# This file configures `supabase start` / `supabase db reset` locally. On a
+# hosted project the same settings live under
+#   Authentication -> Sessions   (inactivity timeout / time-box)
+#   Authentication -> Sessions   (JWT expiry)
+# Changing them here alone will NOT extend sessions in production.
+
+[auth.email]
+enable_signup = false
+double_confirm_changes = true
+enable_confirmations = false
+secure_password_change = true
+
+[auth.rate_limit]
+email_sent = 10
+sign_in_sign_ups = 30
+token_refresh = 150
+
+[storage]
+enabled = true
+file_size_limit = "10MiB"
+
+[realtime]
+enabled = true
